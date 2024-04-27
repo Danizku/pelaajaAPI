@@ -24,10 +24,10 @@ def get_player(session: Session, id: int):
     return player
 
 
-def delete_player(session: Session, id: int):
-    player = session.get(PlayerDB, id)
-    if not player:
-        raise HTTPException(status_code=404)
-    session.delete(player)
-    session.commit()
-    return {'message': f'player with id {id} deleted'}
+# def delete_player(session: Session, id: int):
+#     player = session.get(PlayerDB, id)
+#     if not player:
+#         raise HTTPException(status_code=404)
+#     session.delete(player)
+#     session.commit()
+#     return {'message': f'player with id {id} deleted'}

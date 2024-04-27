@@ -8,7 +8,7 @@ from ..database.database import get_session
 router = APIRouter(prefix='/players')
 
 
-@router.post("/", status_code=status.HTTP_201_CREATED, response_model=PlayerDB)
+@router.post("", status_code=status.HTTP_201_CREATED, response_model=PlayerDB)
 def create_player(*, session: Session = Depends(get_session), player_in: PlayerCreate):
     try:
         player = players_crud.create_player(session, player_in)
@@ -17,7 +17,7 @@ def create_player(*, session: Session = Depends(get_session), player_in: PlayerC
     return player
 
 
-@router.get("/", response_model=list[PlayerDB])
+@router.get("", response_model=list[PlayerDB])
 def get_players(session: Session = Depends(get_session)):
     return players_crud.get_players(session)
 
@@ -73,6 +73,6 @@ def create_player_event(
         raise HTTPException(status_code=422, detail=str(e))
     return event
 
-@router.delete("/{id}")
-def delete_player(*, session: Session = Depends(get_session), id: int):
-    return players_crud.delete_player(session, id)
+# @router.delete("/{id}")
+# def delete_player(*, session: Session = Depends(get_session), id: int):
+#     return players_crud.delete_player(session, id)
